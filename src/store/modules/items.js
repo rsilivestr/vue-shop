@@ -9,8 +9,10 @@ const getters = {
 };
 
 const actions = {
-  async fetchItems({ commit }) {
-    const res = await axios.get('http://localhost:3000/items');
+  async fetchItems({ commit }, params = { limit: 12, page: 1 }) {
+    const res = await axios.get(
+      `http://localhost:3000/items?_limit=${params.limit}&_page=${params.page}`
+    );
 
     commit('setItems', res.data);
   },
