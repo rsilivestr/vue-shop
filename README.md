@@ -1,11 +1,23 @@
-# Vue boilerplate with Parcel
+# Vue shop template
 
 ## Usage
 
-### Install dependencies and start dev server
+### Install dependencies
 
 ```
-npm ci && npm start
+npm ci
+```
+
+### Start mock database with json-server
+
+```
+npm run db
+```
+
+### Start application (in another terminal)
+
+```
+npm start
 ```
 
 ### Build dist directory
