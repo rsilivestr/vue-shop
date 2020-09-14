@@ -2,7 +2,7 @@
   <main class="container">
     <h1>Home</h1>
     <div class="tiles">
-      <div v-for="item in storedItems" :key="item.id" class="tiles__item">
+      <div v-for="item in allItems" :key="item.id" class="tiles__item">
         {{ item.name }}
       </div>
     </div>
@@ -10,15 +10,19 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'Home',
   data() {
     return {};
   },
-  computed: {
-    storedItems() {
-      return this.$store.state.items;
-    },
+  methods: {
+    ...mapActions(['fetchItems']),
+  },
+  computed: mapGetters(['allItems']),
+  created() {
+    this.fetchItems();
   },
 };
 </script>

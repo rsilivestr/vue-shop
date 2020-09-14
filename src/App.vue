@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import About from './views/About';
-import Home from './views/Home';
 import TheHeader from './components/layout/TheHeader';
 
 export default {
