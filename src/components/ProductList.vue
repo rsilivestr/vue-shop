@@ -1,9 +1,7 @@
 <template>
-  <main class="container">
-    <div class="products">
-      <div v-for="item in allItems" :key="item.id" class="products__item">{{ item.name }}</div>
-    </div>
-  </main>
+  <div class="products">
+    <div v-for="item in allItems" :key="item.id" class="products__item">{{ item.name }}</div>
+  </div>
 </template>
 
 <script>

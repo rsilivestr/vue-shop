@@ -1,17 +1,20 @@
 <template>
   <div id="vue-shop">
-    <TheHeader />
+    <Header />
+    <Bread />
     <router-view />
   </div>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader';
+import Bread from './components/layout/Bread';
+import Header from './components/layout/Header';
 
 export default {
   name: 'App',
   components: {
-    TheHeader,
+    Bread,
+    Header,
   },
   data() {
     return {};
