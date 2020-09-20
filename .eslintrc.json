@@ -10,5 +10,6 @@
     "sourceType": "module"
   },
   "plugins": ["vue"],
-  "rules": {}
+  "rules": {},
+  "overrides": [{ "files": "./server/**/*.js", "env": { "node": true } }]
 }
