@@ -5,6 +5,7 @@
       <nav class="main-header__nav topnav">
         <router-link class="topnav__link" exact to="/">Home</router-link>
         <router-link class="topnav__link" to="/about">About</router-link>
+        <router-link class="topnav__link" to="/login">Login</router-link>
       </nav>
     </div>
   </header>
