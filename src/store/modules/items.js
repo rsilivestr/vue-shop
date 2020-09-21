@@ -14,12 +14,15 @@ const actions = {
       `http://localhost:3000/items?_limit=${params.limit}&_page=${params.page}`
     );
 
-    commit('setItems', res.data);
+    commit('addItems', res.data);
   },
 };
 
 const mutations = {
+  // Show single page at a time
   setItems: (state, items) => (state.items = items),
+  // Show several pages at a time
+  addItems: (state, items) => items.forEach((item) => state.items.push(item)),
 };
 
 export default {

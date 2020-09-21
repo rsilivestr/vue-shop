@@ -3,16 +3,20 @@ const fs = require('fs');
 const jsonServer = require('json-server');
 const jwt = require('jsonwebtoken');
 
+// Get database into memory
 const db = JSON.parse(fs.readFileSync('./server/db.json', 'utf8'));
 
 const server = jsonServer.create();
 const router = jsonServer.router('./server/db.json');
-// const middlewares = jsonServer.defaults();
+const middlewares = jsonServer.defaults();
 
-// server.use(middlewares);
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares);
+// Enable request body parser
 server.use(jsonServer.bodyParser);
 
-const secretKey = 's0C9vs0mb@70sP1.22fJs8A;';
+// jsonwebtoken secret key
+const SECRET_KEY = 's0C9vs0mb@70sP1.22fJs8A;';
 
 function verifyToken(req, res, next) {
   // Get auth header value
@@ -47,8 +51,8 @@ server.post('/login', (req, res) => {
     res.sendStatus(403);
   }
 
-  // Send token
-  jwt.sign({ user }, secretKey, { expiresIn: '8h' }, (err, token) => {
+  // Create and send token
+  jwt.sign({ user }, SECRET_KEY, { expiresIn: '8h' }, (err, token) => {
     res.json({ token });
   });
 });
@@ -56,12 +60,13 @@ server.post('/login', (req, res) => {
 // Auth middleware
 server.post('/items', verifyToken, (req, res, next) => {
   // Verify user's token
-  jwt.verify(req.token, secretKey, (err, authData) => {
+  jwt.verify(req.token, SECRET_KEY, (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
       // Validate item
       // ...
+      // Display message in console
       console.log('Item added by ' + authData.user.username);
       next();
     }

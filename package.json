@@ -13,7 +13,7 @@
     "parcel:build": "parcel build public/index.html",
     "parcel:dev": "parcel public/index.html --port 5000 --open",
     "prettify": "prettier src/**/*.vue --write",
-    "start": "npm run clean & npm run parcel:dev"
+    "start": "npm run clean & npm run json:server & npm run parcel:dev"
   },
   "keywords": [],
   "author": "Roman Silivestrov",

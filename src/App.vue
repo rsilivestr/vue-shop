@@ -3,17 +3,20 @@
     <Header />
     <Bread />
     <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Bread from './components/layout/Bread';
+import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 
 export default {
   name: 'App',
   components: {
     Bread,
+    Footer,
     Header,
   },
   data() {
