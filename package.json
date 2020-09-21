@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf .cache dist",
     "build": "npm run clean & npm run parcel:build",
-    "db": "json-server --watch server/db.json --port 3000",
+    "db": "json-server server/db.json --middlewares ./server/middleware/jwt.js --port 3000 --watch",
     "json:server": "nodemon ./server",
     "lint": "eslint src/**/*.vue",
     "lint:fix": "eslint src/**/*.vue --fix",

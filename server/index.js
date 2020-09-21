@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const db = JSON.parse(fs.readFileSync('./server/db.json', 'utf8'));
 
 const server = jsonServer.create();
-const router = jsonServer.router('db.json');
+const router = jsonServer.router('./server/db.json');
 // const middlewares = jsonServer.defaults();
 
 // server.use(middlewares);
@@ -32,9 +32,9 @@ function verifyToken(req, res, next) {
   }
 }
 
-// login into API
-server.post('/api/login', (req, res) => {
-  // find user in database
+// Login into API
+server.post('/login', (req, res) => {
+  // Mock user (user:123456)
   const user = db.users.find((user) => user.username === req.body.username);
 
   // Return forbidden if user was not found
@@ -53,17 +53,17 @@ server.post('/api/login', (req, res) => {
   });
 });
 
-server.post('/api/items/', verifyToken, (req, res) => {
+// Auth middleware
+server.post('/items', verifyToken, (req, res, next) => {
+  // Verify user's token
   jwt.verify(req.token, secretKey, (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
-      // Push item to db
-
-      res.json({
-        message: 'Item added',
-        authData,
-      });
+      // Validate item
+      // ...
+      console.log('Item added by ' + authData.user.username);
+      next();
     }
   });
 });
