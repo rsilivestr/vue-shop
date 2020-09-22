@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['saveToken']),
+    ...mapActions(['saveToken', 'saveUser']),
     async submitForm() {
       if ('' === this.username || '' === this.password) {
         // Show message about empty fields
@@ -52,8 +52,10 @@ export default {
         this.saveToken(token);
 
         // Set user state to authorized
-
+        const user = resData.user;
+        user.authorized = true;
         // Save user information
+        this.saveUser(user);
       }
     },
   },

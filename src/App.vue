@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Bread from './components/layout/Bread';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
@@ -22,7 +23,13 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    ...mapActions(['getLocalToken', 'getLocalUser']),
+  },
+  created() {
+    this.getLocalToken();
+    this.getLocalUser();
+  },
 };
 </script>
 

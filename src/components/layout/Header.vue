@@ -5,13 +5,20 @@
       <nav class="main-header__nav topnav">
         <router-link class="topnav__link" exact to="/">Home</router-link>
         <router-link class="topnav__link" to="/about">About</router-link>
-        <router-link class="topnav__link" to="/login">Login</router-link>
+        <router-link v-if="!userInfo.authorized" class="topnav__link" to="/login">Login</router-link>
+        <router-link
+          v-if="userInfo.authorized"
+          class="topnav__link"
+          to="/profile"
+        >{{userInfo.username}}</router-link>
       </nav>
     </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Header',
   props: {
@@ -19,6 +26,9 @@ export default {
       type: String,
       default: 'App',
     },
+  },
+  computed: {
+    ...mapGetters(['userInfo']),
   },
 };
 </script>

@@ -53,7 +53,10 @@ server.post('/login', (req, res) => {
 
   // Create and send token
   jwt.sign({ user }, SECRET_KEY, { issuer: 'vueShop', expiresIn: '8h' }, (err, token) => {
-    res.json({ token });
+    const userInfo = { ...user };
+    delete userInfo.passwordHash;
+
+    res.json({ user: userInfo, token });
   });
 });
 

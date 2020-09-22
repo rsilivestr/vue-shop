@@ -14,7 +14,7 @@ const actions = {
       `http://localhost:3000/items?_limit=${params.limit}&_page=${params.page}`
     );
 
-    commit('addItems', res.data);
+    commit('setItems', res.data);
   },
 };
 
