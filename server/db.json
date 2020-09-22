@@ -2,7 +2,8 @@
   "users": [
     {
       "username": "user",
-      "passwordHash": "$2b$10$XfZZKacPDGeVg7xoGKU0d.wGkBryqzqLRcXInq1K7DxjMbdac.mB2"
+      "passwordHash": "$2b$10$XfZZKacPDGeVg7xoGKU0d.wGkBryqzqLRcXInq1K7DxjMbdac.mB2",
+      "isAdmin": false
     }
   ],
   "items": [

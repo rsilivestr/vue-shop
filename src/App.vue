@@ -34,11 +34,18 @@ export default {
 }
 
 body {
+  margin: 0;
+}
+
+#vue-shop {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-content {
+  flex: auto;
 }
 
 .container {

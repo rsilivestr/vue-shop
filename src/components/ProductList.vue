@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="products">
-      <div v-for="item in allItems" :key="item.id" class="products__item">
-        {{ item.name }}
-      </div>
+      <div v-for="item in allItems" :key="item.id" class="products__item">{{ item.name }}</div>
     </div>
   </div>
 </template>
@@ -33,17 +31,15 @@ export default {
     this.fetchItems({ limit: 12, page: 1 }); // default params
   },
   mounted() {
-    const pageLoader = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.fetchItems({ limit: 12, page: this.nextPage });
-
-          this.nextPage += 1;
-        }
-      });
-    });
-
-    pageLoader.observe(document.querySelector('.main-footer'));
+    // const pageLoader = new IntersectionObserver((entries) => {
+    //   entries.forEach((entry) => {
+    //     if (entry.isIntersecting) {
+    //       this.fetchItems({ limit: 12, page: this.nextPage });
+    //       this.nextPage += 1;
+    //     }
+    //   });
+    // });
+    // pageLoader.observe(document.querySelector('.main-footer'));
   },
 };
 </script>

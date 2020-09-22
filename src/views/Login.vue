@@ -1,6 +1,6 @@
 <template>
-  <main class="container">
-    <h1>Login</h1>
+  <main class="main-content container">
+    <h1>Вход в личный кабинет</h1>
     <form @submit.prevent="submitForm">
       <label>
         Имя пользователя

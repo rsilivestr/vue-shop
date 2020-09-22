@@ -1,8 +1,6 @@
 <template>
   <footer class="main-footer">
-    <p class="main-footer__copy">
-      &copy; Vue Shop 2020
-    </p>
+    <p class="main-footer__copy container">&copy; Vue Shop 2020</p>
   </footer>
 </template>
 
@@ -12,4 +10,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-footer {
+  color: #fff;
+  background-color: #567;
+
+  &__copy {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+</style>

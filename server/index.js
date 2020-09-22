@@ -52,16 +52,16 @@ server.post('/login', (req, res) => {
   }
 
   // Create and send token
-  jwt.sign({ user }, SECRET_KEY, { expiresIn: '8h' }, (err, token) => {
+  jwt.sign({ user }, SECRET_KEY, { issuer: 'vueShop', expiresIn: '8h' }, (err, token) => {
     res.json({ token });
   });
 });
 
 // Auth middleware
 server.post('/items', verifyToken, (req, res, next) => {
-  // Verify user's token
+  // Verify user's token and rights
   jwt.verify(req.token, SECRET_KEY, (err, authData) => {
-    if (err) {
+    if (err || !authData.user.isAdmin) {
       res.sendStatus(403);
     } else {
       // Validate item
