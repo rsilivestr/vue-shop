@@ -50,12 +50,13 @@ export default {
         // Get token from response
         const token = resData.token;
         this.saveToken(token);
-
         // Set user state to authorized
         const user = resData.user;
         user.authorized = true;
         // Save user information
         this.saveUser(user);
+        // Redirect to profile
+        this.$router.push('/profile');
       }
     },
   },

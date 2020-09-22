@@ -15,3 +15,17 @@ const routes = [
 ];
 
 export const router = new Router({ mode: 'history', routes });
+
+router.beforeEach((to, from, next) => {
+  const anonPages = ['/login', '/register'];
+  const profileRedirect = anonPages.includes(to.path);
+
+  const authorized = JSON.parse(localStorage.getItem('vueShopUser')).authorized;
+
+  // Redirect authorized users from /login and /register to profile
+  if (authorized && profileRedirect) {
+    return next('/profile');
+  }
+
+  next();
+});
