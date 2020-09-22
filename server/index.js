@@ -2,6 +2,11 @@ const bcrypt = require('bcrypt');
 const fs = require('fs');
 const jsonServer = require('json-server');
 const jwt = require('jsonwebtoken');
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+
+const adapter = new FileSync('./server/db.json');
+const ldb = low(adapter);
 
 // Get database into memory
 const db = JSON.parse(fs.readFileSync('./server/db.json', 'utf8'));
@@ -36,10 +41,42 @@ function verifyToken(req, res, next) {
   }
 }
 
+// Register user
+server.post('/register', (req, res) => {
+  const user = req.body;
+  const { email, password, firstName } = user;
+
+  // Validate data...
+
+  const passwordHash = bcrypt.hashSync(password, 10);
+
+  const userEntry = {
+    username: 'Uzar',
+    email,
+    firstName,
+    passwordHash,
+    isAdmin: false,
+  };
+
+  ldb.get('users').push(userEntry).write();
+
+  const publicUserInfo = { firstName, isAdmin: false };
+
+  // Create and send token
+  jwt.sign(
+    { publicUserInfo },
+    SECRET_KEY,
+    { issuer: 'vueShop', expiresIn: '8h' },
+    (err, token) => res.json({ user: publicUserInfo, token })
+  );
+});
+
 // Login into API
 server.post('/login', (req, res) => {
   // Mock user (user:123456)
   const user = db.users.find((user) => user.username === req.body.username);
+  const { firstName, isAdmin } = user;
+  const publicUserInfo = { firstName, isAdmin };
 
   // Return forbidden if user was not found
   if (typeof user === 'undefined') {
@@ -52,12 +89,12 @@ server.post('/login', (req, res) => {
   }
 
   // Create and send token
-  jwt.sign({ user }, SECRET_KEY, { issuer: 'vueShop', expiresIn: '8h' }, (err, token) => {
-    const userInfo = { ...user };
-    delete userInfo.passwordHash;
-
-    res.json({ user: userInfo, token });
-  });
+  jwt.sign(
+    { publicUserInfo },
+    SECRET_KEY,
+    { issuer: 'vueShop', expiresIn: '8h' },
+    (err, token) => res.json({ user: publicUserInfo, token })
+  );
 });
 
 // Auth middleware

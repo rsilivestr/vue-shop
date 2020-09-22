@@ -6,11 +6,12 @@
         <router-link class="topnav__link" exact to="/">Home</router-link>
         <router-link class="topnav__link" to="/about">About</router-link>
         <router-link v-if="!userInfo.authorized" class="topnav__link" to="/login">Login</router-link>
+        <router-link v-if="!userInfo.authorized" class="topnav__link" to="/register">Register</router-link>
         <router-link
           v-if="userInfo.authorized"
           class="topnav__link"
           to="/profile"
-        >{{userInfo.username}}</router-link>
+        >{{userInfo.firstName}}</router-link>
       </nav>
     </div>
   </header>

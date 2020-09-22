@@ -1,6 +1,6 @@
 <template>
   <main class="main-content container">
-    <h1>Привет, {{userInfo.username}}</h1>
+    <h1>Привет, {{userInfo.firstName}}</h1>
   </main>
 </template>
 

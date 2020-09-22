@@ -1,16 +1,20 @@
 <template>
   <main class="main-content container">
-    <h1>Вход в личный кабинет</h1>
+    <h1>Регистрация</h1>
     <form @submit.prevent="submitForm">
       <label>
-        Имя пользователя
-        <input v-model="username" type="text" name="username" />
+        Email
+        <input v-model="email" type="text" />
       </label>
       <label>
         Пароль
-        <input v-model="password" type="password" name="password" />
+        <input v-model="password" type="password" />
       </label>
-      <input type="submit" value="Войти" />
+      <label>
+        Имя
+        <input v-model="firstName" type="text" />
+      </label>
+      <input type="submit" value="Зарегистрироваться" />
     </form>
   </main>
 </template>
@@ -20,17 +24,18 @@ import { mapActions } from 'vuex';
 import axios from 'axios';
 
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
+      firstName: '',
     };
   },
   methods: {
     ...mapActions(['saveToken', 'saveUser']),
     async submitForm() {
-      if ('' === this.username || '' === this.password) {
+      if ('' === this.email || '' === this.password) {
         // Show message about empty fields
         // Then
         return;
@@ -39,12 +44,15 @@ export default {
       // Do some validation
 
       // All good (refactor: move to store / service)
-      const res = await axios.post('http://localhost:3000/login', {
-        username: this.username,
+      const res = await axios.post('http://localhost:3000/register', {
+        email: this.email,
         password: this.password,
+        firstName: this.firstName,
       });
 
       const resData = await res.data;
+
+      console.log(resData);
 
       if (resData) {
         // Get token from response

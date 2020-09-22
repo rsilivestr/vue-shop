@@ -2,7 +2,16 @@
   "users": [
     {
       "username": "user",
+      "email": "i.ivanov@gmail.com",
+      "firstName": "Иван",
       "passwordHash": "$2b$10$XfZZKacPDGeVg7xoGKU0d.wGkBryqzqLRcXInq1K7DxjMbdac.mB2",
+      "isAdmin": false
+    },
+    {
+      "username": "Uzar",
+      "email": "roman",
+      "firstName": "roman",
+      "passwordHash": "$2b$10$XHiNRov0fxo1G5isD/9rS.I.PUahBEo7z3RNIZkCbZZkUMXswdFEO",
       "isAdmin": false
     }
   ],
