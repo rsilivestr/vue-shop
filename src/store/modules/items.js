@@ -23,6 +23,8 @@ const mutations = {
   setItems: (state, items) => (state.items = items),
   // Show several pages at a time
   addItems: (state, items) => items.forEach((item) => state.items.push(item)),
+  // Try this
+  // addItems: (state, items) => state.items = state.items.concat(items),
 };
 
 export default {

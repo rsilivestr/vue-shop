@@ -32,11 +32,13 @@ export default {
     async submitForm() {
       if ('' === this.username || '' === this.password) {
         // Show message about empty fields
+        // Then
         return;
       }
+
       // Do some validation
 
-      // All good
+      // All good (refactor: move to store)
       const res = await axios.post('http://localhost:3000/login', {
         username: this.username,
         password: this.password,
@@ -48,6 +50,10 @@ export default {
         // Get token from response
         const token = resData.token;
         this.saveToken(token);
+
+        // Set user state to authorized
+
+        // Save user information
       }
     },
   },
