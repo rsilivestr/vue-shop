@@ -1,16 +1,14 @@
-const bcrypt = require('bcrypt');
-const fs = require('fs');
 const jsonServer = require('json-server');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
+// Connect to the database
 const adapter = new FileSync('./server/db.json');
-const ldb = low(adapter);
+const db = low(adapter);
 
-// Get database into memory
-const db = JSON.parse(fs.readFileSync('./server/db.json', 'utf8'));
-
+// Create express server
 const server = jsonServer.create();
 const router = jsonServer.router('./server/db.json');
 const middlewares = jsonServer.defaults();
@@ -21,7 +19,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // jsonwebtoken secret key
-const SECRET_KEY = 's0C9vs0mb@70sP1.22fJs8A;';
+const SECRET_KEY = 'ABC';
 
 function verifyToken(req, res, next) {
   // Get auth header value
@@ -48,35 +46,32 @@ server.post('/register', (req, res) => {
 
   // Validate data...
 
+  // Prepare database entry
   const passwordHash = bcrypt.hashSync(password, 10);
-
   const userEntry = {
-    username: 'Uzar',
     email,
     firstName,
     passwordHash,
     isAdmin: false,
   };
+  // Write to db
+  db.get('users').push(userEntry).write();
 
-  ldb.get('users').push(userEntry).write();
-
+  // Prepare jwt payload info
   const publicUserInfo = { firstName, isAdmin: false };
-
   // Create and send token
   jwt.sign(
     { publicUserInfo },
     SECRET_KEY,
     { issuer: 'vueShop', expiresIn: '8h' },
-    (err, token) => res.json({ user: publicUserInfo, token })
+    (err, token) => res.json({ token })
   );
 });
 
 // Login into API
 server.post('/login', (req, res) => {
-  // Mock user (user:123456)
-  const user = db.users.find((user) => user.username === req.body.username);
-  const { firstName, isAdmin } = user;
-  const publicUserInfo = { firstName, isAdmin };
+  // Find user
+  const user = db.get('users').find({ email: req.body.email }).value();
 
   // Return forbidden if user was not found
   if (typeof user === 'undefined') {
@@ -88,12 +83,16 @@ server.post('/login', (req, res) => {
     res.sendStatus(403);
   }
 
+  // Get public user info for token payload
+  const { firstName, isAdmin } = user;
+  const publicUserInfo = { firstName, isAdmin };
+
   // Create and send token
   jwt.sign(
     { publicUserInfo },
     SECRET_KEY,
     { issuer: 'vueShop', expiresIn: '8h' },
-    (err, token) => res.json({ user: publicUserInfo, token })
+    (err, token) => res.json({ token })
   );
 });
 

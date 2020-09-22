@@ -1,17 +1,21 @@
 {
   "users": [
     {
-      "username": "user",
-      "email": "i.ivanov@gmail.com",
+      "email": "ivan@mail.ru",
       "firstName": "Иван",
       "passwordHash": "$2b$10$XfZZKacPDGeVg7xoGKU0d.wGkBryqzqLRcXInq1K7DxjMbdac.mB2",
       "isAdmin": false
     },
     {
-      "username": "Uzar",
-      "email": "roman",
-      "firstName": "roman",
+      "email": "roman@yandex.ru",
+      "firstName": "Роман",
       "passwordHash": "$2b$10$XHiNRov0fxo1G5isD/9rS.I.PUahBEo7z3RNIZkCbZZkUMXswdFEO",
+      "isAdmin": false
+    },
+    {
+      "email": "evgen@mail.ru",
+      "firstName": "Евген",
+      "passwordHash": "$2b$10$jaHkQ8MlPPJ8DjCOkcuJ4.jc/oshUiNVtCJInlT03AP2bZ0rV384q",
       "isAdmin": false
     }
   ],

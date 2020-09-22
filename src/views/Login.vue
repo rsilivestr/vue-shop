@@ -3,8 +3,8 @@
     <h1>Вход в личный кабинет</h1>
     <form @submit.prevent="submitForm">
       <label>
-        Имя пользователя
-        <input v-model="username" type="text" name="username" />
+        Почта
+        <input v-model="email" type="text" name="email" />
       </label>
       <label>
         Пароль
@@ -23,14 +23,14 @@ export default {
   name: 'Login',
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
     };
   },
   methods: {
-    ...mapActions(['saveToken', 'saveUser']),
+    ...mapActions(['saveToken']),
     async submitForm() {
-      if ('' === this.username || '' === this.password) {
+      if ('' === this.email || '' === this.password) {
         // Show message about empty fields
         // Then
         return;
@@ -40,7 +40,7 @@ export default {
 
       // All good (refactor: move to store / service)
       const res = await axios.post('http://localhost:3000/login', {
-        username: this.username,
+        email: this.email,
         password: this.password,
       });
 
@@ -50,11 +50,6 @@ export default {
         // Get token from response
         const token = resData.token;
         this.saveToken(token);
-        // Set user state to authorized
-        const user = resData.user;
-        user.authorized = true;
-        // Save user information
-        this.saveUser(user);
         // Redirect to profile
         this.$router.push('/profile');
       }

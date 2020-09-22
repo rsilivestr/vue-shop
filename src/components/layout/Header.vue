@@ -5,13 +5,9 @@
       <nav class="main-header__nav topnav">
         <router-link class="topnav__link" exact to="/">Home</router-link>
         <router-link class="topnav__link" to="/about">About</router-link>
-        <router-link v-if="!userInfo.authorized" class="topnav__link" to="/login">Login</router-link>
-        <router-link v-if="!userInfo.authorized" class="topnav__link" to="/register">Register</router-link>
-        <router-link
-          v-if="userInfo.authorized"
-          class="topnav__link"
-          to="/profile"
-        >{{userInfo.firstName}}</router-link>
+        <router-link v-if="!token" class="topnav__link" to="/login">Login</router-link>
+        <router-link v-if="!token" class="topnav__link" to="/register">Register</router-link>
+        <router-link v-if="token" class="topnav__link" to="/profile">{{userInfo.firstName}}</router-link>
       </nav>
     </div>
   </header>
@@ -29,7 +25,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['userInfo']),
+    ...mapGetters(['token', 'userInfo']),
   },
 };
 </script>

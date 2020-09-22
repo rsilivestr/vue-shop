@@ -24,11 +24,10 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(['getLocalToken', 'getLocalUser']),
+    ...mapActions(['getLocalToken']),
   },
   created() {
     this.getLocalToken();
-    this.getLocalUser();
   },
 };
 </script>
