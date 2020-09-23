@@ -1,3 +1,6 @@
+import { accountService as accSvc } from '../../services';
+
+// Helper method (refactor? move to src/_helpers)
 const dechiperPayload = (state) => {
   if (!state.token) {
     return {};
@@ -42,6 +45,11 @@ const actions = {
   removeToken: ({ commit }) => {
     localStorage.removeItem('vueShopToken');
     commit('setToken', '');
+  },
+
+  requestLogin: async (email, password) => {
+    const token = await accSvc(email, password);
+    console.log(token);
   },
 };
 
