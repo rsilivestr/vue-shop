@@ -52,6 +52,8 @@ body {
 
 .main-content {
   flex: auto;
+  margin-top: 64px;
+  margin-bottom: 64px;
 }
 
 .container {
@@ -61,5 +63,6 @@ body {
   padding-right: 12px;
   margin-left: auto;
   margin-right: auto;
+  // margin: 50px auto;
 }
 </style>
