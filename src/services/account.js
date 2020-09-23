@@ -6,9 +6,8 @@ const API_URL = 'http://localhost:3000';
 
 const login = async (email, password) => {
   const res = await axios.post(`${API_URL}/login`, { email, password });
-  const data = await res.json();
 
-  return data.token;
+  return res.data;
 };
 
 const register = async (email, password, firstName = '') => {

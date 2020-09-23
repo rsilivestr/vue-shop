@@ -75,12 +75,14 @@ server.post('/login', (req, res) => {
 
   // Return forbidden if user was not found
   if (typeof user === 'undefined') {
-    res.sendStatus(403);
+    // res.sendStatus(403);
+    res.json({ message: 'Нет такой почты' });
   }
 
   // Validate password
   if (!bcrypt.compareSync(req.body.password, user.passwordHash)) {
-    res.sendStatus(403);
+    // res.sendStatus(403);
+    res.json({ message: 'Неверный пароль' });
   }
 
   // Get public user info for token payload

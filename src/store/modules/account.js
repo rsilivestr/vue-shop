@@ -47,9 +47,20 @@ const actions = {
     commit('setToken', '');
   },
 
-  requestLogin: async (email, password) => {
-    const token = await accSvc(email, password);
-    console.log(token);
+  requestLogin: async ({ dispatch }, { email, password }) => {
+    const res = await accSvc.login(email, password);
+
+    if (res.token) {
+      dispatch('setToken', res.token);
+
+      return true;
+    }
+
+    if (res.message) {
+      // Save serverErrorMessage to store or display...
+    }
+
+    return false;
   },
 };
 
