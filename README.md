@@ -11,7 +11,7 @@ npm ci
 ### Start mock database with json-server
 
 ```
-npm run db
+npm run json:server
 ```
 
 ### Start application (in another terminal)

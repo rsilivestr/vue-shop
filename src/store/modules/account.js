@@ -29,12 +29,12 @@ const getters = {
 };
 
 const actions = {
-  saveToken({ commit }, token) {
+  setToken({ commit }, token) {
     commit('setToken', token);
     localStorage.setItem('vueShopToken', JSON.stringify(token));
   },
 
-  getLocalToken: ({ commit }) => {
+  getToken: ({ commit }) => {
     const token = JSON.parse(localStorage.getItem('vueShopToken'));
     if (token) commit('setToken', token);
   },

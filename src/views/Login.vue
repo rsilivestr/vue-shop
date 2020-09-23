@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['saveToken']),
+    ...mapActions(['setToken']),
     async submitForm() {
       if ('' === this.email || '' === this.password) {
         // Show message about empty fields
@@ -49,7 +49,7 @@ export default {
       if (resData) {
         // Get token from response
         const token = resData.token;
-        this.saveToken(token);
+        this.setToken(token);
         // Redirect to profile
         this.$router.push('/profile');
       }

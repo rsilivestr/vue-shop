@@ -24,10 +24,10 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(['getLocalToken']),
+    ...mapActions(['getToken']),
   },
   created() {
-    this.getLocalToken();
+    this.getToken();
   },
 };
 </script>
