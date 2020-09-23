@@ -57,7 +57,9 @@ body {
 .container {
   width: 100%;
   max-width: 1024px;
-  padding: 0 12px;
-  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

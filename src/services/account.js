@@ -12,9 +12,8 @@ const login = async (email, password) => {
 
 const register = async (email, password, firstName = '') => {
   const res = await axios.post(`${API_URL}/register`, { email, password, firstName });
-  const data = await res.json();
 
-  return data.token;
+  return res.data;
 };
 
 export const accountService = {

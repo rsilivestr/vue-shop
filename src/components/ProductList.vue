@@ -48,9 +48,7 @@ export default {
 .products {
   display: grid;
   grid-template: auto / 1fr 1fr;
-  gap: 20px;
-  // Prevent IntersectionObserver false loading
-  min-height: 860px;
+  gap: 12px;
 
   @media all and (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr;

@@ -37,10 +37,8 @@ export default {
 
       // Do some validation
 
-      this.requestLogin({
-        email: this.email,
-        password: this.password,
-      }).then((success) => {
+      const { email, password } = this;
+      this.requestLogin({ email, password }).then((success) => {
         // Redirect on successful login
         if (success) {
           this.$router.push('/profile');

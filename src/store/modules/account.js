@@ -53,13 +53,33 @@ const actions = {
     if (res.token) {
       dispatch('setToken', res.token);
 
+      // Login succeed
       return true;
     }
 
     if (res.message) {
-      // Save serverErrorMessage to store or display...
+      // Save serverErrorMessage to store to display...
     }
 
+    // Login failed
+    return false;
+  },
+
+  requestRegister: async ({ dispatch }, { email, password, firstName }) => {
+    const res = await accSvc.register(email, password, firstName);
+
+    if (res.token) {
+      dispatch('setToken', res.token);
+
+      // Registration succeed
+      return true;
+    }
+
+    if (res.message) {
+      // Save serverErrorMessage to store to display...
+    }
+
+    // Registration failed
     return false;
   },
 };
