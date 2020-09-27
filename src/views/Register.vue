@@ -1,27 +1,64 @@
 <template>
   <main class="main-content container">
     <h1>Регистрация</h1>
-    <form @submit.prevent="submitForm">
-      <label>
-        Email
-        <input v-model="email" type="text" />
+
+    <form class="form" @submit.prevent="submitForm">
+      <label class="form-group">
+        <span class="form-group__label">Email</span>
+        <input
+          v-model.trim="$v.email.$model"
+          class="form-group__input"
+          :class="{ invalid: $v.email.$dirty && $v.email.$invalid }"
+          type="text"
+        />
+        <span v-if="$v.email.$dirty && !$v.email.required" class="form-group__error">
+          Поле обязательно для заполнения
+        </span>
+        <span v-else-if="$v.email.$dirty && !$v.email.email" class="form-group__error">
+          Введите корректный адрес почты
+        </span>
       </label>
-      <label>
-        Пароль
-        <input v-model="password" type="password" />
+
+      <label class="form-group">
+        <span class="form-group__label">Пароль</span>
+        <input
+          v-model.trim="$v.password.$model"
+          class="form-group__input"
+          :class="{ invalid: $v.password.$dirty && $v.password.$invalid }"
+          type="password"
+        />
+        <span
+          v-if="$v.password.$dirty && !$v.password.required"
+          class="form-group__error"
+        >
+          Поле обязательно для заполнения
+        </span>
       </label>
-      <label>
-        Имя
-        <input v-model="firstName" type="text" />
+
+      <label class="form-group">
+        <span class="form-group__label">Имя</span>
+        <input
+          v-model.trim="$v.firstName.$model"
+          class="form-group__input"
+          :class="{ invalid: $v.firstName.$dirty && $v.firstName.$invalid }"
+          type="text"
+        />
+        <span
+          v-if="$v.firstName.$dirty && !$v.firstName.required"
+          class="form-group__error"
+        >
+          Поле обязательно для заполнения
+        </span>
       </label>
-      <input type="submit" value="Зарегистрироваться" />
+
+      <input type="submit" value="Зарегистрироваться" class="form__submit" />
     </form>
   </main>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-// import axios from 'axios';
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'Register',
@@ -52,6 +89,11 @@ export default {
         // else show serverErrorMessage from store
       });
     },
+  },
+  validations: {
+    email: { email, required },
+    password: { required },
+    firstName: { required },
   },
 };
 </script>

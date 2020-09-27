@@ -1,7 +1,7 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "css",
+  "htmlWhitespaceSensitivity": "ignore",
   "printWidth": 90,
   "singleQuote": true,
   "trailingComma": "es5"

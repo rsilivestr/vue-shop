@@ -63,6 +63,59 @@ body {
   padding-right: 12px;
   margin-left: auto;
   margin-right: auto;
-  // margin: 50px auto;
+}
+
+.form {
+  background-color: #5671;
+  max-width: 360px;
+  padding: 1.5rem;
+
+  &__submit {
+    width: 100%;
+    background-color: #678;
+    padding: 0.5rem;
+    color: #fff;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:hover {
+      background-color: #567;
+    }
+  }
+}
+.form-group {
+  display: block;
+  position: relative;
+  margin-bottom: 2rem;
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input {
+    width: 100%;
+    border: 0px solid transparent;
+    padding: 0.5rem;
+    border-bottom: 2px solid transparent;
+
+    &:not(.invalid):focus {
+      border-bottom-color: blueviolet;
+    }
+
+    &.invalid {
+      border-bottom-color: firebrick;
+    }
+  }
+
+  &__error {
+    display: block;
+    position: absolute;
+    top: 105%;
+    color: firebrick;
+    font-size: 0.75rem;
+  }
 }
 </style>
