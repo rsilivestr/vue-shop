@@ -52,8 +52,12 @@ body {
 
 .main-content {
   flex: auto;
-  margin-top: 64px;
-  margin-bottom: 64px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+
+  &__heading {
+    margin: 0 0 48px;
+  }
 }
 
 .container {

@@ -1,6 +1,6 @@
 <template>
   <main class="main-content container">
-    <h1>Home</h1>
+    <h1 class="main-content__heading">Home</h1>
     <ProductList />
   </main>
 </template>

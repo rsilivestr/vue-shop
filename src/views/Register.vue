@@ -1,6 +1,6 @@
 <template>
   <main class="main-content container">
-    <h1>Регистрация</h1>
+    <h1 class="main-content__heading">Регистрация</h1>
 
     <form class="form" @submit.prevent="submitForm">
       <label class="form-group">

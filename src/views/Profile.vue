@@ -1,6 +1,6 @@
 <template>
   <main class="main-content container">
-    <h1>Привет, {{userInfo.firstName}}</h1>
+    <h1 class="main-content__heading">Привет, {{userInfo.firstName}}</h1>
     <button @click="logout">Выйти</button>
   </main>
 </template>

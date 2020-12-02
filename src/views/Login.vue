@@ -1,6 +1,6 @@
 <template>
   <main class="main-content container">
-    <h1>Вход в личный кабинет</h1>
+    <h1 class="main-content__heading">Вход в личный кабинет</h1>
     <form class="form" @submit.prevent="submitForm">
       <label class="form-group">
         <span class="form-group__label">Почта</span>

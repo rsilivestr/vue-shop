@@ -1,8 +1,8 @@
 <template>
-  <header class="main-header">
-    <div class="main-header__container container">
-      <h1 class="main-header__heading">{{ name }}</h1>
-      <nav class="main-header__nav topnav">
+  <header class="header">
+    <div class="header__container container">
+      <h1 class="header__heading">{{ name }}</h1>
+      <nav class="header__nav topnav">
         <router-link class="topnav__link" exact to="/">Home</router-link>
         <router-link class="topnav__link" to="/about">About</router-link>
         <router-link v-if="!token" class="topnav__link" to="/login">Login</router-link>
@@ -31,28 +31,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$lineHeight: 50px;
-
-.main-header {
+.header {
   background-color: #567;
+  color: #fff;
+  height: 50px;
+  position: relative;
 
   &__container {
+    align-items: center;
     display: flex;
     justify-content: space-between;
+    height: 100%;
   }
 
   &__heading {
     margin: 0;
-    color: #fff;
     font-size: 20px;
-    line-height: $lineHeight;
   }
 }
+
 .topnav {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+
   &__link {
-    padding: 0 10px;
     color: #fff;
-    line-height: $lineHeight;
+    line-height: 1.5;
+    text-decoration: none;
   }
 }
 </style>
